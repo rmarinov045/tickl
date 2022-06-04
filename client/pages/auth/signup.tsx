@@ -1,4 +1,5 @@
 import React, { ReactElement, SyntheticEvent, useState } from 'react';
+import Router from 'next/router';
 import useRequest from '../../hooks/useRequest';
 
 function Signup() {
@@ -11,12 +12,13 @@ function Signup() {
 			email,
 			password,
 		},
+		onSuccess: () => Router.push('/'),
 	});
 
 	const handleSubmit = async (e: SyntheticEvent) => {
 		e.preventDefault();
 
-		doRequest();
+		await doRequest();
 	};
 
 	return (
