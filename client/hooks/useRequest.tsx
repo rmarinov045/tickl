@@ -14,6 +14,14 @@ interface RequestHook {
 	};
 }
 
+/**
+ * Custom hook that returns a function to make HTTP requests and JSX error markup or null
+ * @param url - URL to be called
+ * @param method - HTTP method 
+ * @param body - Request body
+ * @returns doRequest function and errors JSX (or null if there are none)
+ */
+
 function useRequest({ url, method, body }: RequestHook): {
 	doRequest: () => Promise<void> | Promise<{ email: string; id: string }>;
 	errors: ReactElement | ReactElement[] | null;
