@@ -1,7 +1,10 @@
 import 'bootstrap/dist/css/bootstrap.css';
+import { AppContext } from 'next/app';
 import Head from 'next/head';
+import buildAxiosClient from '../api/build-axios-client';
+import Header from '../components/header';
 
-function App({ Component, pageProps }: any) {
+const AppComponent = ({ Component, pageProps, currentUser }: any) => {
 	<Head>
 		<meta
 			name='viewport'
@@ -9,7 +12,26 @@ function App({ Component, pageProps }: any) {
 		></meta>
 	</Head>;
 
-	return <Component {...pageProps} />;
-}
+	return (
+		<>
+			<Header currentUser={currentUser} />
+			<Component {...pageProps} />
+		</>
+	);
+};
 
-export default App
+AppComponent.getInitialProps = async (appContext: AppContext) => {
+	const client = buildAxiosClient(appContext.ctx);
+	const { data } = await client.get('/api/users/currentuser');
+	let pageProps = {};
+	if (appContext.Component.getInitialProps) {
+		pageProps = await appContext.Component.getInitialProps(appContext.ctx);
+	}
+
+	return {
+		pageProps,
+		...data,
+	};
+};
+
+export default AppComponent;
