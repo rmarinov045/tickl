@@ -7,10 +7,7 @@ const LandingPage = ({
 	currentUser: { id: string; email: string } | null;
 }) => {
 	return (
-		<div className='container'>
-			Homepage
-			<h2>{currentUser?.email || 'test'}</h2>
-		</div>
+		 currentUser ? <h1>You are signed in</h1> : <h1>You are NOT signed in</h1>
 	);
 };
 
