@@ -32,7 +32,7 @@ metadata:
   name: tickets-srv
 spec:
   selector:
-    app: auth
+    app: tickets
   ports:
     - name:
       protocol: TCP
