@@ -105,3 +105,5 @@ dist
 
 # Custom NPM package files
 common
+nats-test
+test.js
