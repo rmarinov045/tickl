@@ -1,6 +1,6 @@
 import mongoose from 'mongoose';
 import { OrderStatus } from '@rmtickl/common';
-import { TicketDoc } from './ticket'
+import { TicketDoc } from './ticket';
 
 interface OrderAttrs {
 	userId: string;
@@ -54,4 +54,4 @@ orderSchema.statics.build = (attrs: OrderAttrs) => new Order(attrs);
 
 const Order = mongoose.model<OrderDoc, orderModel>('Order', orderSchema);
 
-export { Order };
+export { Order, OrderStatus };
