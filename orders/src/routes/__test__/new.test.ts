@@ -1,12 +1,12 @@
 import request from 'supertest';
 import { app } from '../../app';
-import mongooose from 'mongoose';
+import mongoose from 'mongoose';
 import { Order, OrderStatus } from '../../models/order';
 import { Ticket } from '../../models/ticket';
 import { natsWrapper } from '../../nats-wrapper';
 
 it('returns an error if the ticket does not exist', async () => {
-	const ticketId = new mongooose.Types.ObjectId().toHexString();
+	const ticketId = new mongoose.Types.ObjectId().toHexString();
 
 	await request(app)
 		.post('/api/orders')
@@ -21,6 +21,7 @@ it('returns an error if the ticket is already reserved', async () => {
 	const ticket = Ticket.build({
 		title: 'test',
 		price: 20,
+		id: new mongoose.Types.ObjectId().toHexString(),
 	});
 
 	await ticket.save();
@@ -47,6 +48,7 @@ it('reserves a ticket', async () => {
 	const ticket = Ticket.build({
 		title: 'test',
 		price: 20,
+		id: new mongoose.Types.ObjectId().toHexString(),
 	});
 
 	await ticket.save();
@@ -64,6 +66,7 @@ it('emits an order created event', async () => {
 	const ticket = Ticket.build({
 		title: 'test',
 		price: 20,
+		id: new mongoose.Types.ObjectId().toHexString(),
 	});
 
 	await ticket.save();

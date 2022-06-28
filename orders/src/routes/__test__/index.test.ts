@@ -1,3 +1,4 @@
+import mongoose from 'mongoose';
 import request from 'supertest';
 import { app } from '../../app';
 import { Order } from '../../models/order';
@@ -7,6 +8,7 @@ const buildTicket = async () => {
 	const ticket = Ticket.build({
 		title: 'test',
 		price: 20,
+		id: new mongoose.Types.ObjectId().toHexString(),
 	});
 
 	await ticket.save();
@@ -53,6 +55,6 @@ it('fetches orders for an particular user', async () => {
 	expect(response.body.length).toEqual(2);
 	expect(response.body[0].id).toEqual(orderOne.id);
 	expect(response.body[1].id).toEqual(orderTwo.id);
-    expect(response.body[0].ticket.id).toEqual(ticketTwo.id)
-    expect(response.body[1].ticket.id).toEqual(ticketThree.id)
+	expect(response.body[0].ticket.id).toEqual(ticketTwo.id);
+	expect(response.body[1].ticket.id).toEqual(ticketThree.id);
 });
