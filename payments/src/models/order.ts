@@ -1,6 +1,6 @@
 import { OrderStatus } from '@rmtickl/common';
 import mongoose from 'mongoose';
-import { transform } from 'typescript';
+import { updateIfCurrentPlugin } from 'mongoose-update-if-current';
 
 interface OrderAttrs {
 	id: string;
@@ -45,6 +45,9 @@ const orderSchema = new mongoose.Schema(
 		},
 	}
 );
+
+orderSchema.set('versionKey', 'version');
+orderSchema.plugin(updateIfCurrentPlugin);
 
 orderSchema.statics.build = function (attrs: OrderAttrs) {
 	return new Order({
