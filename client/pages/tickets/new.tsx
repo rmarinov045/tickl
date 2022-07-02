@@ -1,4 +1,5 @@
 import React, { SyntheticEvent, useState } from 'react';
+import Router from 'next/router';
 import useRequest from '../../hooks/useRequest';
 
 function NewTicket() {
@@ -11,7 +12,7 @@ function NewTicket() {
 			title,
 			price,
 		},
-		onSuccess: (ticket) => console.log(ticket),
+		onSuccess: () => Router.push('/'),
 	});
 
 	const handleSubmit = async (e: SyntheticEvent) => {
