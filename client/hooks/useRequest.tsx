@@ -12,7 +12,7 @@ interface RequestHook {
 	body: {
 		[key: string]: string;
 	};
-	onSuccess(responseData: { email: string; id: string }): void;
+	onSuccess(responseData: { email: string; id: string } | any): void;
 }
 
 /**
