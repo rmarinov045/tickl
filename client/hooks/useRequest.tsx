@@ -24,15 +24,17 @@ interface RequestHook {
  */
 
 function useRequest({ url, method, body, onSuccess }: RequestHook): {
-	doRequest: () => Promise<void> | Promise<{ email: string; id: string }>;
+	doRequest: (
+		props?: any
+	) => Promise<void> | Promise<{ email: string; id: string }>;
 	errors: ReactElement | ReactElement[] | null;
 } {
 	const [errors, setErrors] = useState<ReactElement | null>(null);
 
-	const doRequest = async () => {
+	const doRequest = async (props = {}) => {
 		try {
 			setErrors(null);
-			const response = await axios[method](url, body);
+			const response = await axios[method](url, { ...body, ...props });
 
 			if (onSuccess) {
 				onSuccess(response.data);
