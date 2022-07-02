@@ -1,7 +1,7 @@
 import Link from 'next/link';
 import React from 'react';
 
-export interface Ticket {
+export interface TicketData {
 	title: string;
 	price: number;
 	version: number;
@@ -13,7 +13,7 @@ const LandingPage = ({
 	tickets,
 }: {
 	currentUser: { id: string; email: string } | null;
-	tickets: Ticket[];
+	tickets: TicketData[];
 }) => {
 	const ticketList = tickets.map((ticket) => {
 		return (
@@ -52,7 +52,7 @@ const LandingPage = ({
 LandingPage.getInitialProps = async (context, client, currentUser) => {
 	const { data } = await client.get('/api/tickets');
 
-	return { tickets: data as Ticket[] };
+	return { tickets: data as TicketData[] };
 };
 
 export default LandingPage;
