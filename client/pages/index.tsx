@@ -1,7 +1,7 @@
 import Link from 'next/link';
 import React from 'react';
 
-interface Ticket {
+export interface Ticket {
 	title: string;
 	price: number;
 	version: number;
