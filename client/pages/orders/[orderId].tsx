@@ -3,6 +3,7 @@ import StripeCheckout from 'react-stripe-checkout';
 import { TicketData } from '..';
 import { stripeKey } from './stripe-key';
 import useRequest from '../../hooks/useRequest';
+import Router from 'next/router';
 
 export interface OrderData {
 	userId: string;
@@ -31,7 +32,7 @@ function OrderShow({
 		body: {
 			orderId: order.id,
 		},
-		onSuccess: (payment) => console.log(payment),
+		onSuccess: (payment) => Router.push('/orders'),
 	});
 
 	useEffect(() => {
