@@ -1,13 +1,16 @@
 import React from 'react';
-import { Ticket } from '../index';
+import Router from 'next/router';
+import { TicketData } from '../index';
 import useRequest from '../../hooks/useRequest';
+import { OrderData } from '../orders/[orderId]';
 
-function TicketShow({ ticket }: { ticket: Ticket }) {
+function TicketShow({ ticket }: { ticket: TicketData }) {
 	const { doRequest, errors } = useRequest({
 		url: '/api/orders',
 		method: 'post',
 		body: { ticketId: ticket.id },
-		onSuccess: (order) => console.log(order),
+		onSuccess: (order: OrderData) =>
+			Router.push('/orders/[orderId]', `/orders/${order.id}`),
 	});
 
 	return (
