@@ -1,5 +1,7 @@
 import React, { useEffect, useState } from 'react';
+import StripeCheckout from 'react-stripe-checkout';
 import { TicketData } from '..';
+import { stripeKey } from './stripe-key';
 
 export interface OrderData {
 	userId: string;
@@ -9,7 +11,18 @@ export interface OrderData {
 	id: string;
 }
 
-function OrderShow({ order }: { order: OrderData }) {
+export interface UserData {
+	email: string;
+	userId: string;
+}
+
+function OrderShow({
+	order,
+	currentUser,
+}: {
+	order: OrderData;
+	currentUser: UserData;
+}) {
 	const [timeLeft, setTimeLeft] = useState(0);
 
 	useEffect(() => {
@@ -28,7 +41,17 @@ function OrderShow({ order }: { order: OrderData }) {
 		return <div>Order expired</div>;
 	}
 
-	return <div>Time left to pay: {timeLeft} seconds</div>;
+	return (
+		<div>
+			Time left to pay: {timeLeft} seconds
+			<StripeCheckout
+				token={(token) => console.log(token)}
+				stripeKey={stripeKey}
+				amount={order.ticket.price * 100}
+				email={currentUser.email}
+			/>
+		</div>
+	);
 }
 
 OrderShow.getInitialProps = async (context, client) => {
