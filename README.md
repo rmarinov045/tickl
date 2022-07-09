@@ -31,12 +31,12 @@ Ticketing app built for practicing microservices architecture.
 
 | Service    | Link |
 | ---------- | ---- |
-| Auth       | [Click] (https://github.com/rmarinov045/tickl/tree/main/auth)     |
-| Client     | [Click] (https://github.com/rmarinov045/tickl/tree/main/client)     |
-| Expiration | [Click] (https://github.com/rmarinov045/tickl/tree/main/expiration)     |
-| Orders     | [Click] (https://github.com/rmarinov045/tickl/tree/main/orders)     |
-| Payments   | [Click] (https://github.com/rmarinov045/tickl/tree/main/payments)     |
-| Tickets    | [Click] (https://github.com/rmarinov045/tickl/tree/main/tickets)     |
+| Auth       | [Click](https://github.com/rmarinov045/tickl/tree/main/auth)     |
+| Client     | [Click](https://github.com/rmarinov045/tickl/tree/main/client)     |
+| Expiration | [Click](https://github.com/rmarinov045/tickl/tree/main/expiration)     |
+| Orders     | [Click](https://github.com/rmarinov045/tickl/tree/main/orders)     |
+| Payments   | [Click](https://github.com/rmarinov045/tickl/tree/main/payments)     |
+| Tickets    | [Click](https://github.com/rmarinov045/tickl/tree/main/tickets)     |
 
 ## How to run
 
